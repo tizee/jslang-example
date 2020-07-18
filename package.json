@@ -1,0 +1,10 @@
+{
+  "name": "jslang-example",
+  "version": "1.0.0",
+  "description": "A js playground",
+  "main": "index.js",
+  "repository": "git@github.com:tizee/jslang-example.git",
+  "author": "tizee <33030965+tizee@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true
+}

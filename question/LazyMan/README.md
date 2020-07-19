@@ -3,23 +3,28 @@
 一道检验 JavaScript 异步编程基本功的题目。
 
 ```javascript
-A Design question
+// A Design question
 
-LazyMan('Tony');
+LazyMan("Tony");
 // Hi I am Tony
 
-LazyMan('Tony').sleep(10).eat('lunch');
+LazyMan("Tony").sleep(10).eat("lunch");
 // Hi I am Tony
 // wait for 10 sec
 // I am eating lunch
 
-LazyMan('Tony').eat('lunch').sleep(10).eat('dinner');
+LazyMan("Tony").eat("lunch").sleep(10).eat("dinner");
 // Hi I am Tony
 // I am eating lunch
 // wait for 10 sec
 // I am eating diner
 
-LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(10).eat('junk food');
+LazyMan("Tony")
+    .eat("lunch")
+    .eat("dinner")
+    .sleepFirst(5)
+    .sleep(10)
+    .eat("junk food");
 // Hi I am Tony
 // wait for 5 sec..
 // I am eating lunch

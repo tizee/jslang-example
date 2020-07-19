@@ -1,5 +1,10 @@
 const log = console.log;
 
+/**
+ * Maintain a callback queue. Each task in queue calls next.
+ * 维护一个待执行的回调函数队列， 队列中的每一个函数的函数体中都调用执行下一个事件的动作。
+ * 在构造函数中使用setTimeout设置macrotask，调用第一个执行事件的动作来作为第一动力。
+ */
 class LazyManClass {
     constructor(name) {
         this.tasks = [];

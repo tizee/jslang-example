@@ -57,4 +57,9 @@ function LazyMan(name) {
 }
 
 // test case
-LazyMan("Tony").eat("junk food").sleep(5).sleepFirst(4).eat("dinner");
+LazyMan("Tony")
+    .eat("junk food")
+    .sleep(5)
+    .sleepFirst(4)
+    .eat("dinner")
+    .sleepFirst(6);

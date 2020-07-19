@@ -55,7 +55,7 @@ function LazyMan(name) {
     return new LazyManClass(name);
 }
 
-// a simple test use cases
+// a simple test use case
 LazyMan("Tony")
     .eat("lunch")
     .eat("dinner")

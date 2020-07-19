@@ -1,46 +1,53 @@
 /**
  * all methods wrappered in a Promise
+ * 使用回调函数+Promise，借助队列将sleepFirst事件置前，单使用Promise则无法支持多个sleepFirst事件。
  */
 const log = console.log;
 class LazyManClass {
     constructor(name) {
         this.name = name;
-        this.first = -1;
+        this.task = [];
         log(`I am ${name}`);
-        this.next = Promise.resolve().then(() => {
-            if (this.first >= 0) {
-                return new Promise((resolve) => {
-                    log(`sleep ${this.first} seconds first`);
-                    setTimeout(() => {
-                        resolve();
-                    }, this.first * 1000);
-                });
-            }
+        Promise.resolve().then(() => {
+            this.do();
         });
     }
 
-    sleep(sec) {
-        this.next = this.next.then(() => {
-            return new Promise((resolve) => {
-                log(`wait for ${sec} seconds`);
+    do() {
+        // aux head
+        let head = Promise.resolve();
+        while (this.task.length) {
+            const fn = this.task.shift();
+            // connect
+            head = head.then(() => {
+                return fn();
+            });
+        }
+    }
+
+    wait(sec) {
+        return () =>
+            new Promise((resolve) => {
+                console.log(`wait ${sec} seconds`);
                 setTimeout(() => {
                     resolve();
                 }, sec * 1000);
             });
-        });
+    }
+
+    sleep(sec) {
+        this.task.push(this.wait(sec));
         return this;
     }
 
     sleepFirst(sec) {
         // create a micro-task
-        this.first = sec;
+        this.task.unshift(this.wait(sec));
         return this;
     }
 
     eat(food) {
-        this.next = this.next.then(() => {
-            log(`I am eating ${food}`);
-        });
+        this.task.push(() => log(`I am eating ${food}`));
         return this;
     }
 }

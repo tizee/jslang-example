@@ -14,7 +14,7 @@ log(0n === 0); // false
 
 /*
  Number in JavaScript using IEEE754 double-percesion represntation.
- 
+ That's why 0.1 + 0.2 !== 0.3 
 */
 
 log(0.1 + 0.2 === 0.3); // false
